@@ -1,3 +1,4 @@
+// src/app/page.tsx
 import Hero from "./components/Hero";
 import CalendarEmbed from "./components/CalendarEmbed";
 import EventCards from "./components/EventCards";
@@ -5,7 +6,7 @@ import EventCards from "./components/EventCards";
 const GCAL_EMBED =
   "https://calendar.google.com/calendar/embed?src=d73d9eda7195bc3d898ba3895797600dbe994095b27cca527d7528850cd31ed2%40group.calendar.google.com&ctz=America%2FNew_York&mode=MONTH&showPrint=0&showTabs=0";
 
-  export default function HomePage() {
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#110035] via-[#1a0452] to-[#230b6f] text-white">
       <Hero />
@@ -40,14 +41,16 @@ const GCAL_EMBED =
         ))}
       </section>
 
-      {/* Interactive calendar */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      {/* Calendar */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8">
         <h2 className="text-2xl font-semibold mb-4">Events Calendar</h2>
         <CalendarEmbed src={GCAL_EMBED} height={720} />
-        <p className="text-white/70 text-sm mt-3">
-          Tip: Make your Google Calendar public and paste the embed URL into{" "}
-          <code>GCAL_EMBED</code>.
-        </p>
+      </section>
+
+      {/* Event cards (quick booking) */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <h3 className="text-xl font-semibold mb-4">Quick Booking</h3>
+        <EventCards />
       </section>
     </main>
   );
