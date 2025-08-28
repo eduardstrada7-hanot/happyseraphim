@@ -3,6 +3,8 @@ import Hero from "./components/Hero";
 import CalendarEmbed from "./components/CalendarEmbed";
 import EventCards from "./components/EventCards";
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const GCAL_EMBED =
   "https://calendar.google.com/calendar/embed?src=d73d9eda7195bc3d898ba3895797600dbe994095b27cca527d7528850cd31ed2%40group.calendar.google.com&ctz=America%2FNew_York&mode=MONTH&showPrint=0&showTabs=0";
 
