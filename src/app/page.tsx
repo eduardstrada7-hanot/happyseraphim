@@ -1,4 +1,8 @@
 import Hero from "./components/Hero";
+import CalendarEmbed from "./components/CalendarEmbed";
+
+const GCAL_EMBED =
+  "https://calendar.google.com/calendar/u/0?cid=ZDczZDllZGE3MTk1YmMzZDg5OGJhMzg5NTc5NzYwMGRiZTk5NDA5NWIyN2NjYTUyN2Q3NTI4ODUwY2QzMWVkMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t";
 
 export default function HomePage() {
   return (
@@ -33,6 +37,16 @@ export default function HomePage() {
             <p className="text-white/80">{c.p}</p>
           </a>
         ))}
+      </section>
+
+      {/* Interactive calendar */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <h2 className="text-2xl font-semibold mb-4">Events Calendar</h2>
+        <CalendarEmbed src={GCAL_EMBED} height={720} />
+        <p className="text-white/70 text-sm mt-3">
+          Tip: Make your Google Calendar public and paste the embed URL into{" "}
+          <code>GCAL_EMBED</code>.
+        </p>
       </section>
     </main>
   );

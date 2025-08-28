@@ -11,6 +11,7 @@ const nav: (MenuItem | Dropdown)[] = [
   { label: "Home", href: "/" },
   { label: "Music Studio", href: "/music-studio" },
   { label: "Video Event Venue", href: "/video-event-venue" },
+  { label: "Events", href: "/events" },
   {
     label: "Soma",
     items: [
@@ -26,14 +27,12 @@ const nav: (MenuItem | Dropdown)[] = [
       { label: "Team", href: "/our-story/team" },
     ],
   },
-  { label: "Events", href: "/events" 
-    
-  },
 ];
 
 export default function Navbar({ glass = false }: { glass?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header
@@ -42,17 +41,13 @@ export default function Navbar({ glass = false }: { glass?: boolean }) {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between">
-          {/* Brand (logo + wordmark) */}
-          <Link
-            href="/"
-            aria-label="HappySeraphim home"
-            className="flex items-center gap-2"
-          >
+          {/* Brand */}
+          <Link href="/" aria-label="HappySeraphim home" className="flex items-center gap-2">
             <Image
-              src="/hs-logo.png"          // <-- your file in /public
+              src="/hs-logo.png"
               alt="HappySeraphim logo"
-              width={50}
-              height={50}
+              width={36}
+              height={36}
               priority
               className="rounded-full shadow-md"
             />
@@ -70,7 +65,7 @@ export default function Navbar({ glass = false }: { glass?: boolean }) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`hover:text-white link-underline ${
+                      className={`liquid-link hover:text-white ${
                         active ? "text-white font-medium" : ""
                       }`}
                     >
@@ -86,7 +81,7 @@ export default function Navbar({ glass = false }: { glass?: boolean }) {
                   onMouseEnter={() => setOpen(item.label)}
                 >
                   <button
-                    className="hover:text-white link-underline text-white/90"
+                    className="liquid-link hover:text-white text-white/90"
                     aria-haspopup="true"
                     aria-expanded={open === item.label}
                   >
@@ -121,8 +116,73 @@ export default function Navbar({ glass = false }: { glass?: boolean }) {
               </Link>
             </li>
           </ul>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden inline-flex items-center justify-center rounded-xl p-2 bg-white/10 border border-white/15 hover:bg-white/15 transition"
+            aria-label="Open menu"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? (
+              /* X icon */
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 6l12 12M18 6L6 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            ) : (
+              /* Hamburger icon */
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile panel */}
+      {mobileOpen && (
+        <div className="md:hidden px-4 pb-4">
+          <div className="glass rounded-2xl p-3 space-y-1">
+            {nav.map((item) => {
+              if ("href" in item) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-3 py-2 rounded-lg hover:bg-white/10"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              return (
+                <div key={item.label} className="px-2 py-1">
+                  <div className="text-white/80 text-sm mb-1">{item.label}</div>
+                  <div className="pl-2">
+                    {item.items.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="block px-3 py-2 rounded-lg hover:bg-white/10"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+            <Link
+              href="/book"
+              className="block px-3 py-2 rounded-lg bg-white/90 text-purple-800 font-medium text-center"
+              onClick={() => setMobileOpen(false)}
+            >
+              Book Now
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
