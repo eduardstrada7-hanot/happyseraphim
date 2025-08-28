@@ -1,10 +1,11 @@
 import Hero from "./components/Hero";
 import CalendarEmbed from "./components/CalendarEmbed";
+import EventCards from "./components/EventCards";
 
 const GCAL_EMBED =
-  "https://calendar.google.com/calendar/u/0?cid=ZDczZDllZGE3MTk1YmMzZDg5OGJhMzg5NTc5NzYwMGRiZTk5NDA5NWIyN2NjYTUyN2Q3NTI4ODUwY2QzMWVkMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t";
+  "https://calendar.google.com/calendar/embed?src=d73d9eda7195bc3d898ba3895797600dbe994095b27cca527d7528850cd31ed2%40group.calendar.google.com&ctz=America%2FNew_York&mode=MONTH&showPrint=0&showTabs=0";
 
-export default function HomePage() {
+  export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#110035] via-[#1a0452] to-[#230b6f] text-white">
       <Hero />
