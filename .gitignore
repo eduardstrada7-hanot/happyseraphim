@@ -1,0 +1,32 @@
+# Dependencies & builds
+node_modules/
+.next/
+out/
+dist/
+build/
+.turbo/
+.vercel/
+.cache/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Logs & coverage
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.eslintcache
+.idea/
+.vscode/
+
+# Misc
+*.swp
