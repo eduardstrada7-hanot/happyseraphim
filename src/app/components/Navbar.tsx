@@ -26,6 +26,9 @@ const nav: (MenuItem | Dropdown)[] = [
       { label: "Team", href: "/our-story/team" },
     ],
   },
+  { label: "Events", href: "/events" 
+    
+  },
 ];
 
 export default function Navbar({ glass = false }: { glass?: boolean }) {
